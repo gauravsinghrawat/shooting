@@ -55,10 +55,18 @@ background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
           #button:hover{
             background: "red";
         }
+        #scream{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
     </style>
 </head>
 <body>
     <canvas id="canvas"></canvas>
+    <img id="scream" width="70px" height="70px"
+    src="bee.gif" alt="The Scream">
     <div id="score"><h1></h1></div>
     <div id="endGame">High Score:<br><span id="high"></span><br><button id="button">Restart</button></div>
     
@@ -93,7 +101,8 @@ background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
         
          let x = window.innerWidth/2;
         let y = window.innerHeight/2;
-         
+       // let img = document.getElementById("scream");
+        
         class Gun{
             constructor(x,y,radius,color){
                 this.x = x;
@@ -120,7 +129,7 @@ background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
         let button = document.getElementById('button');
         button.addEventListener('click',init);
          function init(){
-             gun =  new Gun(x,y,20,'#fff');
+             gun =  new Gun(x,y,20,'#111');
              animate();
              enemyArray = [];
              bulletArray = [];
@@ -144,7 +153,7 @@ background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
                 let directionX = velocity.x  * 10;
                 let directionY = velocity.y * 10;
                 let radius = 5;
-                let color = 'blue';
+                let color = '#fff';
                 
                 bulletArray.push(new Bullet(x,y,directionX,directionY,radius,color));
             }
@@ -273,7 +282,7 @@ background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
            
             animationId =  requestAnimationFrame(animate);
             ctx.fillStyle = 'rgba(0,0,0,0.1)';
-            ctx.clearRect(0,0,innerWidth,innerHeight);
+            ctx.fillRect(0,0,innerWidth,innerHeight);
             
             gun.update(); 
             
